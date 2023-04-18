@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_main_scene"
+    android:background="@color/gris"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +20,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/blueTwitter"
+        android:id="@+id/wheel_blanco"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/wheel_blanco"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/wheel_gris"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/wheel_gris"
@@ -28,16 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/whiteTwitter"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/wheel_blanco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

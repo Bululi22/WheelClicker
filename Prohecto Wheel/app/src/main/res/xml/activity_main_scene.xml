@@ -22,27 +22,29 @@
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             android:scaleX="10"
-            android:scaleY="10" />
+            android:scaleY="10"
+            android:visibility="visible" />
         <Constraint
-            android:id="@+id/blueTwitter"
+            android:id="@+id/wheel_blanco"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible"
             android:scaleX="0"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="parent"
             android:scaleY="0"
-            android:alpha="0" />
+            android:alpha="1" />
         <Constraint
-            android:id="@+id/whiteTwitter"
-            android:scaleX="1"
+            android:id="@+id/wheel_gris"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="100dp"
             android:layout_height="100dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="1"
             android:scaleY="1" />
     </ConstraintSet>
 
@@ -56,28 +58,32 @@
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             android:scaleX="0"
-            android:scaleY="0" />
+            android:scaleY="0"
+            android:alpha="1" />
         <Constraint
-            android:id="@+id/blueTwitter"
+            android:id="@+id/wheel_blanco"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="100dp"
             android:layout_height="100dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"
             android:scaleX="1"
             android:scaleY="1"
             android:alpha="1"
             motion:transitionEasing="cubic(1,0,1,0)" />
         <Constraint
-            android:id="@+id/whiteTwitter"
+            android:id="@+id/wheel_gris"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="100dp"
             android:layout_height="100dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"
             android:scaleX="0"
+            android:alpha="1"
             android:scaleY="0" />
     </ConstraintSet>
 </MotionScene>
