@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/rueda"
+        android:icon="@drawable/baseline_adjust_24"
+        android:title="Wheel"/>
+
+    <item
+        android:id="@+id/mejoras"
+        android:icon="@drawable/baseline_diamond_24"
+        android:title="Mejoras"/>
+
+    <item
+        android:id="@+id/ajustes"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Ajustes"/>
+</menu>

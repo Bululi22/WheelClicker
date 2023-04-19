@@ -40,5 +40,4 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
 </androidx.constraintlayout.motion.widget.MotionLayout>

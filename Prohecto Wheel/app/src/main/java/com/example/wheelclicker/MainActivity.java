@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private int a;
@@ -27,4 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
