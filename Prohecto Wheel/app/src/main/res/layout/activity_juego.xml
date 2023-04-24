@@ -34,6 +34,59 @@ tools:context=".Juego">
             app:srcCompat="@drawable/efecto_boton" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ven_Mejora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/imgWheel1111"
+            android:layout_width="313dp"
+            android:layout_height="401dp"
+            app:srcCompat="@drawable/rodrigo" />
+        <TextView
+            android:id="@+id/tvAUX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ÑEEEEE"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ven_Ajuste"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/imgWheel222"
+            android:layout_width="313dp"
+            android:layout_height="401dp"
+            app:srcCompat="@drawable/wheel_blanco" />
+        <TextView
+            android:id="@+id/tvAUX2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AJUSTES"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav"
         android:layout_width="match_parent"

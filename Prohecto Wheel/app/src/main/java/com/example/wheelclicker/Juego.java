@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +38,7 @@ public class Juego extends AppCompatActivity {
     private TextView tvContador;
     private MediaPlayer mp;
     private BottomNavigationView nav;
-    private LinearLayout ven_Wheel;
+    private LinearLayout ven_Wheel, ven_Mejora, ven_Ajuste;
     private String venActual;
 
     @Override
@@ -53,9 +54,12 @@ public class Juego extends AppCompatActivity {
         imgWheel = findViewById(R.id.imgWheel);
         tvContador = findViewById(R.id.tvContador);
         nav = findViewById(R.id.nav);
-        ven_Wheel = findViewById(R.id.ven_Wheel);
 
-        venActual = "Ventana Wheel";
+        ven_Wheel = findViewById(R.id.ven_Wheel);
+        ven_Mejora = findViewById(R.id.ven_Mejora);
+        ven_Ajuste = findViewById(R.id.ven_Ajuste);
+
+        venActual = "wheel";
 
         //Formato contador
         DecimalFormat decimalFormat = new DecimalFormat("#");
@@ -72,16 +76,15 @@ public class Juego extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.rueda:
-                        Toast.makeText(Juego.this, "Wheel", Toast.LENGTH_LONG).show();
+                        animacion("wheel");
                         break;
 
                     case R.id.mejoras:
-                        Toast.makeText(Juego.this, "Mejoras", Toast.LENGTH_LONG).show();
-                        animacion("desaparecer");
+                        animacion("mejoras");
                         break;
 
                     case R.id.ajustes:
-                        Toast.makeText(Juego.this, "Ajustes", Toast.LENGTH_LONG).show();
+                        animacion("ajustes");
                         break;
                     default:
                 }
@@ -106,29 +109,136 @@ public class Juego extends AppCompatActivity {
     //Animacion cambio de ventanas
     private void animacion(String mostrar){
 
-        ven_Wheel.setVisibility(View.GONE);
+        //WHEEL
+        if (mostrar.equals("wheel") && !venActual.equals(mostrar)){
+            if(venActual.equals("ajustes")){
+                invis_desplazamiento_derecha(ven_Ajuste);
+                vis_desplazamiento_derecha(ven_Wheel);
+            }else {
+                invis_desplazamiento_derecha(ven_Mejora);
+                vis_desplazamiento_derecha(ven_Wheel);
+            }
+            venActual = mostrar;
+            return;
+        }
+
+        //MEJORAS
+        if (mostrar.equals("mejoras") && !venActual.equals(mostrar)){
+            if (venActual.equals("wheel")){
+                invis_desplazamiento_izquierda(ven_Wheel);
+                vis_desplazamiento_izquierda(ven_Mejora);
+            }else {
+                invis_desplazamiento_derecha(ven_Ajuste);
+                vis_desplazamiento_derecha(ven_Mejora);
+            }
+            venActual = mostrar;
+            return;
+        }
+
+        //AJUSTES
+        if (mostrar.equals("ajustes") && !venActual.equals(mostrar)){
+            if(venActual.equals("wheel")){
+                invis_desplazamiento_izquierda(ven_Wheel);
+                vis_desplazamiento_izquierda(ven_Ajuste);
+            }else {
+                invis_desplazamiento_izquierda(ven_Mejora);
+                vis_desplazamiento_izquierda(ven_Ajuste);
+            }
+            venActual = mostrar;
+            return;
+        }
+    }
+
+    private void invis_desplazamiento_derecha(LinearLayout ventana){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ventana.setVisibility(View.GONE);
+
+
+                AnimationSet set = new AnimationSet(true);
+                Animation animation = null;
+
+                animation = new TranslateAnimation(
+                        Animation.RELATIVE_TO_SELF, 0.0f,
+                        Animation.RELATIVE_TO_SELF, 1.0f,
+                        Animation.RELATIVE_TO_SELF, 0.0f,
+                        Animation.RELATIVE_TO_SELF, 0.0f);
+                set.addAnimation(animation);
+
+                animation.setDuration(100);
+
+                LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
+                ventana.setLayoutAnimation(controller);
+                ventana.startAnimation(animation);
+                animation.cancel();
+            }
+        },0);
+    }
+
+    private void vis_desplazamiento_derecha(LinearLayout ventana){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ventana.setVisibility(View.VISIBLE);
+
+
+                AnimationSet set = new AnimationSet(true);
+                Animation animation = null;
+
+                animation = new TranslateAnimation(
+                        Animation.RELATIVE_TO_SELF, -1.0f,
+                        Animation.RELATIVE_TO_SELF, 0.0f,
+                        Animation.RELATIVE_TO_SELF, 0.0f,
+                        Animation.RELATIVE_TO_SELF, 0.0f);
+                set.addAnimation(animation);
+
+                animation.setDuration(100);
+                LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
+                ventana.setLayoutAnimation(controller);
+                ventana.startAnimation(animation);
+                animation.cancel();
+            }
+        },0);
+    }
+
+    private void invis_desplazamiento_izquierda(LinearLayout ventana){
+        ventana.setVisibility(View.GONE);
 
         AnimationSet set = new AnimationSet(true);
         Animation animation = null;
-        if (mostrar.equals("aparecer")){
-            animation = new TranslateAnimation(
-                    Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f);}
 
-        if (mostrar.equals("desaparecer")){
-            animation = new TranslateAnimation(
-                    Animation.RELATIVE_TO_SELF, 0.1f,
-                    Animation.RELATIVE_TO_SELF, 0.1f,
-                    Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f);}
-
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, -1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f);
         set.addAnimation(animation);
-        LayoutAnimationController controller = new LayoutAnimationController(set, 0.20f);
-        ven_Wheel.setLayoutAnimation(controller);
-        ven_Wheel.startAnimation(animation);
 
+        animation.setDuration(100);
+
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
+        ventana.setLayoutAnimation(controller);
+        ventana.startAnimation(animation);
+    }
+
+    private void vis_desplazamiento_izquierda(LinearLayout ventana){
+        ventana.setVisibility(View.VISIBLE);
+
+        AnimationSet set = new AnimationSet(true);
+        Animation animation = null;
+
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f);
+        set.addAnimation(animation);
+        animation.setDuration(100);
+
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
+        ventana.setLayoutAnimation(controller);
+        ventana.startAnimation(animation);
     }
 
     //Sonido Click
