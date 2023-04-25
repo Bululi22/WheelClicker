@@ -35,7 +35,7 @@ public class Juego extends AppCompatActivity {
 
     private float contador = 0;
     private ImageView imgWheel;
-    private TextView tvContador;
+    private TextView tvContador, tvContadorMejoras;
     private MediaPlayer mp;
     private BottomNavigationView nav;
     private LinearLayout ven_Wheel, ven_Mejora, ven_Ajuste;
@@ -53,6 +53,7 @@ public class Juego extends AppCompatActivity {
 
         imgWheel = findViewById(R.id.imgWheel);
         tvContador = findViewById(R.id.tvContador);
+        tvContadorMejoras = findViewById(R.id.tvContadorMejoras);
         nav = findViewById(R.id.nav);
 
         ven_Wheel = findViewById(R.id.ven_Wheel);
@@ -64,7 +65,8 @@ public class Juego extends AppCompatActivity {
         //Formato contador
         DecimalFormat decimalFormat = new DecimalFormat("#");
 
-        tvContador.setText(contador + "");
+        tvContador.setText(decimalFormat.format(contador) + "€");
+        tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
 
         //Declarar sonido
         mp = MediaPlayer.create(this, R.raw.click_sound);
@@ -97,7 +99,8 @@ public class Juego extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 contador++;
-                tvContador.setText(decimalFormat.format(contador) + "");
+                tvContador.setText(decimalFormat.format(contador) + "€");
+                tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
                 if (mp.isPlaying()) {
                     sonidoClick();
                 }
@@ -246,4 +249,7 @@ public class Juego extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.click_sound);
     }
 
+    private void comprar(String pepo){
+
+    }
 }
