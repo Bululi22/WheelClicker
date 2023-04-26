@@ -14,7 +14,7 @@ tools:context=".Juego">
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,6 +41,7 @@ tools:context=".Juego">
         android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
         android:orientation="vertical"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -176,15 +177,16 @@ tools:context=".Juego">
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button227575"
+                    android:id="@+id/btnF1"
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center|right"
                     android:layout_marginVertical="8dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/rojo"
-                    android:onClick='"'
+                    android:onClick='btn_F1_clickado'
                     android:paddingHorizontal="2dp"
+                    android:tag="f1"
                     android:text="Comprar"
                     android:textSize="12sp"
                     android:textStyle="bold"

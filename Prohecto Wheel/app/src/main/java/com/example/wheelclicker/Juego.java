@@ -40,6 +40,8 @@ public class Juego extends AppCompatActivity {
     private BottomNavigationView nav;
     private LinearLayout ven_Wheel, ven_Mejora, ven_Ajuste;
     private String venActual;
+    private Button btnAux;
+    private DecimalFormat decimalFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +65,8 @@ public class Juego extends AppCompatActivity {
         venActual = "wheel";
 
         //Formato contador
-        DecimalFormat decimalFormat = new DecimalFormat("#");
-
-        tvContador.setText(decimalFormat.format(contador) + "€");
-        tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
+        decimalFormat = new DecimalFormat("#");
+        actualizadorContador();
 
         //Declarar sonido
         mp = MediaPlayer.create(this, R.raw.click_sound);
@@ -99,14 +99,15 @@ public class Juego extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 contador++;
-                tvContador.setText(decimalFormat.format(contador) + "€");
-                tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
+                actualizadorContador();
                 if (mp.isPlaying()) {
                     sonidoClick();
                 }
                 mp.start();
             }
         });
+
+
     }
 
     //Animacion cambio de ventanas
@@ -249,7 +250,38 @@ public class Juego extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.click_sound);
     }
 
-    private void comprar(String pepo){
 
+
+    public void btn_F1_clickado (View view){
+//        Toast.makeText(Juego.this, "pepepepe", Toast.LENGTH_LONG).show();
+        btnAux = findViewById(R.id.btnF1);
+        comprar("f1", btnAux.getText().toString());
+    }
+
+    private void comprar(String nomMejora, String estado){
+        if (estado.equals("Comprar")){
+            switch (nomMejora){
+                case "f1":
+                    if (contador>=10) {
+                        contador -= 10;
+                        actualizadorContador();
+                        btnAux.setText("Mejorar");
+                        Toast.makeText(Juego.this, "Comprado :)", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(Juego.this, "No tienes suficiente dinero", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+
+                case "f2":
+                    contador-=10;
+                    break;
+            }
+        }
+
+    }
+    private void actualizadorContador (){
+        //Actualizar los tv Contadores
+        tvContador.setText(decimalFormat.format(contador) + "€");
+        tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
     }
 }
