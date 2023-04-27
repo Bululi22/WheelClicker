@@ -33,7 +33,7 @@ import java.text.DecimalFormat;
 
 public class Juego extends AppCompatActivity {
 
-    private float contador = 0;
+    private double contador = 0, aumentador = 1;
     private ImageView imgWheel;
     private TextView tvContador, tvContadorMejoras;
     private MediaPlayer mp;
@@ -65,7 +65,7 @@ public class Juego extends AppCompatActivity {
         venActual = "wheel";
 
         //Formato contador
-        decimalFormat = new DecimalFormat("#");
+        decimalFormat = new DecimalFormat("0.00");
         actualizadorContador();
 
         //Declarar sonido
@@ -98,7 +98,7 @@ public class Juego extends AppCompatActivity {
         imgWheel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contador++;
+                contador+= aumentador;
                 actualizadorContador();
                 if (mp.isPlaying()) {
                     sonidoClick();
@@ -255,25 +255,40 @@ public class Juego extends AppCompatActivity {
     public void btn_F1_clickado (View view){
 //        Toast.makeText(Juego.this, "pepepepe", Toast.LENGTH_LONG).show();
         btnAux = findViewById(R.id.btnF1);
-        comprar("f1", btnAux.getText().toString());
+        comprar("f1", btnAux.getTag().toString());
     }
 
-    private void comprar(String nomMejora, String estado){
-        if (estado.equals("Comprar")){
+    private void comprar(String nomMejora, String tag){
+        if (tag.equals("Comprar")){
             switch (nomMejora){
                 case "f1":
-                    if (contador>=10) {
-                        contador -= 10;
+                    double precioCompra = Double.parseDouble(btnAux.getText().toString().substring(0, btnAux.getText().toString().length()-1));
+                    if (contador>=precioCompra) {
+                        contador -= precioCompra;
                         actualizadorContador();
-                        btnAux.setText("Mejorar");
-                        Toast.makeText(Juego.this, "Comprado :)", Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(Juego.this, "No tienes suficiente dinero", Toast.LENGTH_LONG).show();
+                        btnAux.setText(decimalFormat.format(preciosMejoras(precioCompra))+"€");
+//                        btnAux.setText(String.format("%.2f €", preciosMejoras(precioCompra)));
+                        btnAux.setTag("1");
                     }
                     break;
 
                 case "f2":
-                    contador-=10;
+                    break;
+            }
+        }else{
+            switch (nomMejora){
+                case "f1":
+                    double precioMejora = Double.parseDouble(btnAux.getText().toString().substring(0, btnAux.getText().toString().length()-1).replace(',','.'));
+                    if (contador>=precioMejora) {
+                        contador -= precioMejora;
+                        actualizadorContador();
+                        btnAux.setText(decimalFormat.format(preciosMejoras(precioMejora))+"€");
+                        btnAux.setTag((Integer.parseInt(tag)+1)+"");
+//                        Toast.makeText(Juego.this, "Tag actual: " + btnAux.getTag(), Toast.LENGTH_LONG).show();
+                    }
+                    break;
+
+                case "f2":
                     break;
             }
         }
@@ -283,5 +298,11 @@ public class Juego extends AppCompatActivity {
         //Actualizar los tv Contadores
         tvContador.setText(decimalFormat.format(contador) + "€");
         tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
+    }
+
+    private double preciosMejoras (double precioActual){
+        double precioNuevo = precioActual + (precioActual/10);
+        Toast.makeText(Juego.this, precioNuevo+" 1", Toast.LENGTH_LONG).show();
+        return precioNuevo;
     }
 }

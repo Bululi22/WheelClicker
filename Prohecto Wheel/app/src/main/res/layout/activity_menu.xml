@@ -52,6 +52,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/rojo"
             android:paddingHorizontal="2dp"
+            android:tag="Comprar"
             android:text="Comprar"
             android:textSize="12sp"
             android:textStyle="bold"
