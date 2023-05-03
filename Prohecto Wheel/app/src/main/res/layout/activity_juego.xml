@@ -7,6 +7,7 @@ android:layout_height="match_parent"
 android:background="@color/gris"
 tools:context=".Juego">
 
+<!--##################################################################################################Ventana Wheel-->
     <LinearLayout
         android:id="@+id/ven_Wheel"
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@ tools:context=".Juego">
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,14 +35,14 @@ tools:context=".Juego">
             android:layout_height="401dp"
             app:srcCompat="@drawable/efecto_boton" />
     </LinearLayout>
-
+<!--##################################################################################################Ventana Mejoras-->
     <LinearLayout
         android:id="@+id/ven_Mejora"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,82 +57,7 @@ tools:context=".Juego">
             android:textSize="48sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="25dp"
-            android:layout_marginTop="24dp"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="87dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/bg_circulo">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="51dp"
-                    android:layout_height="54dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/f1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="87dp"
-                android:background="@drawable/bg"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="3dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|left"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView22"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="0dp"
-                        android:padding="5dp"
-                        android:text="Equipo de F1"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="Cada click vale x2" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/button22"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|right"
-                    android:layout_marginVertical="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rojo"
-                    android:paddingHorizontal="2dp"
-                    android:text="Comprar"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="30dp" />
-
-            </LinearLayout>
-        </LinearLayout>
-
+        <!--########################################################################Mejora Concesionario-->
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,48 +75,143 @@ tools:context=".Juego">
                 android:paddingStart="108dp"
                 android:paddingTop="5dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="106dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:paddingTop="5dp"
+                        android:text="Concesionario"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="106dp"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="Cada click vale +1"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+                    <Button
+                        android:id="@+id/btnConcesionario"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center|right"
+                        android:layout_marginVertical="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/rojo"
+                        android:onClick='btn_Concesionario_clickado'
+                        android:paddingHorizontal="2dp"
+                        android:tag="Comprar"
+                        android:text="2€"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/bg_gris" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="86dp"
+                android:layout_height="86dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/bg_circulo"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imageView50"
+                    android:layout_width="51dp"
+                    android:layout_height="54dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/concesionario" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+        <!--########################################################################Mejora F1-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gris"
+            tools:context=".Menu">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/bg"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:paddingStart="108dp"
+                android:paddingTop="5dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/textView222"
-                        android:layout_width="match_parent"
+                        android:layout_width="106dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="0dp"
-                        android:padding="5dp"
+                        android:paddingTop="5dp"
                         android:text="Equipo de F1"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView55575"
-                        android:layout_width="match_parent"
+                        android:layout_width="106dp"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="Cada click vale x2"
-                        android:textSize="14sp" />
+                        android:padding="1dp"
+                        android:text="Multiplica el valor del click"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView222" />
 
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnF1"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|right"
-                    android:layout_marginVertical="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rojo"
-                    android:onClick='btn_F1_clickado'
-                    android:paddingHorizontal="2dp"
-                    android:tag="Comprar"
-                    android:text="2€"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="30dp" />
+                    <Button
+                        android:id="@+id/btnF1"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center|right"
+                        android:layout_marginVertical="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/rojo"
+                        android:onClick='btn_F1_clickado'
+                        android:paddingHorizontal="2dp"
+                        android:tag="Comprar"
+                        android:text="2€"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -217,11 +238,11 @@ tools:context=".Juego">
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/f1" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </RelativeLayout>
-    </LinearLayout>
 
+
+    </LinearLayout>
+<!--##################################################################################################Ventana Ajuste-->
     <LinearLayout
         android:id="@+id/ven_Ajuste"
         android:layout_width="match_parent"
@@ -247,7 +268,7 @@ tools:context=".Juego">
             android:textSize="48sp"
             android:textStyle="bold" />
     </LinearLayout>
-
+<!--##################################################################################################Menu-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav"
         android:layout_width="match_parent"

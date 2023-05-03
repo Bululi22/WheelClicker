@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -33,7 +34,7 @@ import java.text.DecimalFormat;
 
 public class Juego extends AppCompatActivity {
 
-    private double contador = 0, aumentador = 1;
+    private double contador = 999999999, aumentador = 1, multiplicador = 1;
     private ImageView imgWheel;
     private TextView tvContador, tvContadorMejoras;
     private MediaPlayer mp;
@@ -41,12 +42,13 @@ public class Juego extends AppCompatActivity {
     private LinearLayout ven_Wheel, ven_Mejora, ven_Ajuste;
     private String venActual;
     private Button btnAux;
-    private DecimalFormat decimalFormat;
+    private DecimalFormat decimalFormat, enteroFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Ventana completa
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ocultarUI();
+
         //Rotacion desabilitada
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -66,9 +68,10 @@ public class Juego extends AppCompatActivity {
 
         //Formato contador
         decimalFormat = new DecimalFormat("0.00");
+        enteroFormat = new DecimalFormat("0");
         actualizadorContador();
 
-        //Declarar sonido
+        //Declarar sonido del click de la rueda
         mp = MediaPlayer.create(this, R.raw.click_sound);
 
 
@@ -98,7 +101,7 @@ public class Juego extends AppCompatActivity {
         imgWheel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contador+= aumentador;
+                contador= contador + aumentador*multiplicador;
                 actualizadorContador();
                 if (mp.isPlaying()) {
                     sonidoClick();
@@ -106,15 +109,28 @@ public class Juego extends AppCompatActivity {
                 mp.start();
             }
         });
+    }
 
-
+    //Ocultar barra de abajo y barra de notificaciones
+    private void ocultarUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                );
     }
 
     //Animacion cambio de ventanas
-    private void animacion(String mostrar){
+    private void animacion(String ventana_a_mostrar){
 
         //WHEEL
-        if (mostrar.equals("wheel") && !venActual.equals(mostrar)){
+        if (ventana_a_mostrar.equals("wheel") && !venActual.equals(ventana_a_mostrar)){
             if(venActual.equals("ajustes")){
                 invis_desplazamiento_derecha(ven_Ajuste);
                 vis_desplazamiento_derecha(ven_Wheel);
@@ -122,12 +138,12 @@ public class Juego extends AppCompatActivity {
                 invis_desplazamiento_derecha(ven_Mejora);
                 vis_desplazamiento_derecha(ven_Wheel);
             }
-            venActual = mostrar;
+            venActual = ventana_a_mostrar;
             return;
         }
 
         //MEJORAS
-        if (mostrar.equals("mejoras") && !venActual.equals(mostrar)){
+        if (ventana_a_mostrar.equals("mejoras") && !venActual.equals(ventana_a_mostrar)){
             if (venActual.equals("wheel")){
                 invis_desplazamiento_izquierda(ven_Wheel);
                 vis_desplazamiento_izquierda(ven_Mejora);
@@ -135,12 +151,12 @@ public class Juego extends AppCompatActivity {
                 invis_desplazamiento_derecha(ven_Ajuste);
                 vis_desplazamiento_derecha(ven_Mejora);
             }
-            venActual = mostrar;
+            venActual = ventana_a_mostrar;
             return;
         }
 
         //AJUSTES
-        if (mostrar.equals("ajustes") && !venActual.equals(mostrar)){
+        if (ventana_a_mostrar.equals("ajustes") && !venActual.equals(ventana_a_mostrar)){
             if(venActual.equals("wheel")){
                 invis_desplazamiento_izquierda(ven_Wheel);
                 vis_desplazamiento_izquierda(ven_Ajuste);
@@ -148,64 +164,55 @@ public class Juego extends AppCompatActivity {
                 invis_desplazamiento_izquierda(ven_Mejora);
                 vis_desplazamiento_izquierda(ven_Ajuste);
             }
-            venActual = mostrar;
+            venActual = ventana_a_mostrar;
             return;
         }
     }
 
+    //Animacion de desaparecer ventana desplazamiento derecha
     private void invis_desplazamiento_derecha(LinearLayout ventana){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ventana.setVisibility(View.GONE);
+        ventana.setVisibility(View.GONE);
 
+        AnimationSet set = new AnimationSet(true);
+        Animation animation = null;
 
-                AnimationSet set = new AnimationSet(true);
-                Animation animation = null;
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f);
+        set.addAnimation(animation);
 
-                animation = new TranslateAnimation(
-                        Animation.RELATIVE_TO_SELF, 0.0f,
-                        Animation.RELATIVE_TO_SELF, 1.0f,
-                        Animation.RELATIVE_TO_SELF, 0.0f,
-                        Animation.RELATIVE_TO_SELF, 0.0f);
-                set.addAnimation(animation);
+        animation.setDuration(100);
 
-                animation.setDuration(100);
-
-                LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
-                ventana.setLayoutAnimation(controller);
-                ventana.startAnimation(animation);
-                animation.cancel();
-            }
-        },0);
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
+        ventana.setLayoutAnimation(controller);
+        ventana.startAnimation(animation);
+        animation.cancel();
     }
 
+    //Animacion de aparecer ventana desplazamiento derecha
     private void vis_desplazamiento_derecha(LinearLayout ventana){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ventana.setVisibility(View.VISIBLE);
+        ventana.setVisibility(View.VISIBLE);
 
+        AnimationSet set = new AnimationSet(true);
+        Animation animation = null;
 
-                AnimationSet set = new AnimationSet(true);
-                Animation animation = null;
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, -1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f);
+        set.addAnimation(animation);
 
-                animation = new TranslateAnimation(
-                        Animation.RELATIVE_TO_SELF, -1.0f,
-                        Animation.RELATIVE_TO_SELF, 0.0f,
-                        Animation.RELATIVE_TO_SELF, 0.0f,
-                        Animation.RELATIVE_TO_SELF, 0.0f);
-                set.addAnimation(animation);
-
-                animation.setDuration(100);
-                LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
-                ventana.setLayoutAnimation(controller);
-                ventana.startAnimation(animation);
-                animation.cancel();
-            }
-        },0);
+        animation.setDuration(100);
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.10f);
+        ventana.setLayoutAnimation(controller);
+        ventana.startAnimation(animation);
+        animation.cancel();
     }
 
+    //Animacion de desaparecer ventana desplazamiento izquierda
     private void invis_desplazamiento_izquierda(LinearLayout ventana){
         ventana.setVisibility(View.GONE);
 
@@ -226,6 +233,7 @@ public class Juego extends AppCompatActivity {
         ventana.startAnimation(animation);
     }
 
+    //Animacion de aparecer ventana desplazamiento izquierda
     private void vis_desplazamiento_izquierda(LinearLayout ventana){
         ventana.setVisibility(View.VISIBLE);
 
@@ -245,64 +253,81 @@ public class Juego extends AppCompatActivity {
         ventana.startAnimation(animation);
     }
 
-    //Sonido Click
+    //Resetear sonido Click rueda
     private void sonidoClick() {
         mp = MediaPlayer.create(this, R.raw.click_sound);
     }
 
+    //Boton de compra o mejora de Concesionario
+    public void btn_Concesionario_clickado (View view){
+        btnAux = findViewById(R.id.btnConcesionario);
+        //Comprueba si tiene dinero suficiente
+        if(comprar(btnAux.getTag().toString())){
+            //Efecto compra/mejora
+            aumentador += 1;
+        }
+    }
 
-
+    //Boton de compra o mejora de F1
     public void btn_F1_clickado (View view){
 //        Toast.makeText(Juego.this, "pepepepe", Toast.LENGTH_LONG).show();
         btnAux = findViewById(R.id.btnF1);
-        comprar("f1", btnAux.getTag().toString());
+        //Comprueba si tiene dinero suficiente
+        if(comprar(btnAux.getTag().toString())){
+            //Efecto compra/mejora
+            aumentador *= 2;
+        }
     }
 
-    private void comprar(String nomMejora, String tag){
-        if (tag.equals("Comprar")){
-            switch (nomMejora){
-                case "f1":
-                    double precioCompra = Double.parseDouble(btnAux.getText().toString().substring(0, btnAux.getText().toString().length()-1));
-                    if (contador>=precioCompra) {
-                        contador -= precioCompra;
-                        actualizadorContador();
-                        btnAux.setText(decimalFormat.format(preciosMejoras(precioCompra))+"€");
-//                        btnAux.setText(String.format("%.2f €", preciosMejoras(precioCompra)));
-                        btnAux.setTag("1");
-                    }
-                    break;
+    private Boolean comprar(String tag){
+        double precioCompra_o_Mejora = Double.parseDouble(btnAux.getText().toString().substring(0, btnAux.getText().toString().length()-1).replace(',','.'));
 
-                case "f2":
-                    break;
+        //Si nunca se a comprado, su tag es "Compra"
+        //Si se a comprado, su tag es el numero de veces que se a mejorado más la compra(1)
+        if (tag.equals("Comprar")){
+            if (contador>=precioCompra_o_Mejora) {
+                contador -= precioCompra_o_Mejora;
+                actualizadorContador();
+                btnAux.setTag("1");
+                btnAux.setText(decimalFormat.format(preciosMejoras(precioCompra_o_Mejora)) + "€");
+                return true;
             }
         }else{
-            switch (nomMejora){
-                case "f1":
-                    double precioMejora = Double.parseDouble(btnAux.getText().toString().substring(0, btnAux.getText().toString().length()-1).replace(',','.'));
-                    if (contador>=precioMejora) {
-                        contador -= precioMejora;
-                        actualizadorContador();
-                        btnAux.setText(decimalFormat.format(preciosMejoras(precioMejora))+"€");
-                        btnAux.setTag((Integer.parseInt(tag)+1)+"");
-//                        Toast.makeText(Juego.this, "Tag actual: " + btnAux.getTag(), Toast.LENGTH_LONG).show();
-                    }
-                    break;
-
-                case "f2":
-                    break;
+            if (contador>=precioCompra_o_Mejora) {
+                contador -= precioCompra_o_Mejora;
+                actualizadorContador();
+                btnAux.setText(decimalFormat.format(preciosMejoras(precioCompra_o_Mejora))+"€");
+                btnAux.setTag((Integer.parseInt(tag)+1)+"");
+//                Toast.makeText(Juego.this, "Tag actual: " + btnAux.getTag(), Toast.LENGTH_LONG).show();
+                return true;
             }
+        }
+        return false;
+    }
+
+    //Actualizar los tv Contador
+    private void actualizadorContador (){
+        //Actualizar los tv Contadores
+        //Si es mayor a 100 se quitan los decimales
+        if (contador>100){
+            tvContador.setText(enteroFormat.format(contador) + "€");
+            tvContadorMejoras.setText(enteroFormat.format(contador) + "€");
+        }else if (contador>999999999){
+            String aux=contador+"";
+            tvContador.setText(aux.substring(0,aux.length()-6)+ "M€");
+
+        }else{
+            tvContador.setText(decimalFormat.format(contador) + "€");
+            tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
         }
 
     }
-    private void actualizadorContador (){
-        //Actualizar los tv Contadores
-        tvContador.setText(decimalFormat.format(contador) + "€");
-        tvContadorMejoras.setText(decimalFormat.format(contador) + "€");
-    }
 
+    //Subidas de precio
     private double preciosMejoras (double precioActual){
+        //Suma de un 10%
         double precioNuevo = precioActual + (precioActual/10);
-        Toast.makeText(Juego.this, precioNuevo+" 1", Toast.LENGTH_LONG).show();
+//        Toast.makeText(Juego.this, precioNuevo+" 1", Toast.LENGTH_LONG).show();
         return precioNuevo;
     }
 }
