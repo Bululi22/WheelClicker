@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@color/gris"
+android:background="@drawable/fondov2"
 tools:context=".Juego">
 
 <!--##################################################################################################Ventana Wheel-->
@@ -15,24 +15,49 @@ tools:context=".Juego">
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvContador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="112dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/rastro_rueda_fondo" />
+
+            <TextView
+                android:id="@+id/tvContador"
+                android:layout_width="105dp"
+                android:layout_height="63dp"
+                android:gravity="center"
+                android:text="xxx"
+                android:textColor="@color/white"
+                android:textSize="60sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                app:layout_constraintVertical_bias="0.142" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <ImageView
             android:id="@+id/imgWheel"
             android:layout_width="313dp"
             android:layout_height="401dp"
+            android:visibility="visible"
             app:srcCompat="@drawable/efecto_boton" />
     </LinearLayout>
 <!--##################################################################################################Ventana Mejoras-->
@@ -42,11 +67,12 @@ tools:context=".Juego">
         android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
 
         <TextView
             android:id="@+id/tvContadorMejoras"
@@ -253,12 +279,15 @@ tools:context=".Juego">
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
         <ImageView
             android:id="@+id/imgWheel222"
             android:layout_width="313dp"
             android:layout_height="401dp"
             app:srcCompat="@drawable/wheel_blanco" />
+
         <TextView
             android:id="@+id/tvAUX2"
             android:layout_width="wrap_content"
