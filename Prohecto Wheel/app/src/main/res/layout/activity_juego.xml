@@ -1,74 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@drawable/fondov2"
-tools:context=".Juego">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    tools:context=".Juego">
 
-<!--##################################################################################################Ventana Wheel-->
+    <!--##################################################################################################Ventana Wheel-->
+
     <LinearLayout
         android:id="@+id/ven_Wheel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
-                android:layout_height="112dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/rastro_rueda_fondo" />
 
             <TextView
                 android:id="@+id/tvContador"
-                android:layout_width="105dp"
-                android:layout_height="63dp"
-                android:gravity="center"
-                android:text="xxx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="bottom"
+                android:text="xxx€"
                 android:textColor="@color/white"
                 android:textSize="60sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imgWheel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView3"
-                app:layout_constraintVertical_bias="0.142" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:srcCompat="@drawable/efecto_boton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-        <ImageView
-            android:id="@+id/imgWheel"
-            android:layout_width="313dp"
-            android:layout_height="401dp"
-            android:visibility="visible"
-            app:srcCompat="@drawable/efecto_boton" />
     </LinearLayout>
-<!--##################################################################################################Ventana Mejoras-->
+    <!--##################################################################################################Ventana Mejoras-->
     <LinearLayout
         android:id="@+id/ven_Mejora"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="15dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/bg_gris_claro"
         android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -79,6 +87,7 @@ tools:context=".Juego">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="xxx€"
             android:textColor="@color/white"
             android:textSize="48sp"
             android:textStyle="bold" />
@@ -87,7 +96,7 @@ tools:context=".Juego">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gris"
+            android:layout_marginHorizontal="10dp"
             tools:context=".Menu">
 
             <LinearLayout
@@ -130,7 +139,7 @@ tools:context=".Juego">
 
                     <Button
                         android:id="@+id/btnConcesionario"
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="0dp"
                         android:layout_gravity="center|right"
                         android:layout_marginVertical="8dp"
@@ -154,13 +163,13 @@ tools:context=".Juego">
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/bg_gris" />
+                android:background="@drawable/bg_circulo_gris_claro" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="86dp"
                 android:layout_height="86dp"
                 android:layout_marginVertical="10dp"
-                android:background="@drawable/bg_circulo"
+                android:background="@drawable/bg_circulo_blanco"
                 android:visibility="visible">
 
                 <ImageView
@@ -178,7 +187,7 @@ tools:context=".Juego">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gris"
+            android:layout_marginHorizontal="10dp"
             tools:context=".Menu">
 
             <LinearLayout
@@ -221,7 +230,7 @@ tools:context=".Juego">
 
                     <Button
                         android:id="@+id/btnF1"
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="0dp"
                         android:layout_gravity="center|right"
                         android:layout_marginVertical="8dp"
@@ -245,13 +254,13 @@ tools:context=".Juego">
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/bg_gris" />
+                android:background="@drawable/bg_circulo_gris_claro" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="86dp"
                 android:layout_height="86dp"
                 android:layout_marginVertical="10dp"
-                android:background="@drawable/bg_circulo"
+                android:background="@drawable/bg_circulo_blanco"
                 android:visibility="visible">
 
                 <ImageView
@@ -268,7 +277,7 @@ tools:context=".Juego">
 
 
     </LinearLayout>
-<!--##################################################################################################Ventana Ajuste-->
+    <!--##################################################################################################Ventana Ajuste-->
     <LinearLayout
         android:id="@+id/ven_Ajuste"
         android:layout_width="match_parent"
@@ -297,7 +306,7 @@ tools:context=".Juego">
             android:textSize="48sp"
             android:textStyle="bold" />
     </LinearLayout>
-<!--##################################################################################################Menu-->
+    <!--##################################################################################################Menu-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav"
         android:layout_width="match_parent"

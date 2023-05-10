@@ -34,7 +34,7 @@ import java.text.DecimalFormat;
 
 public class Juego extends AppCompatActivity {
 
-    private double contador = 999999999, aumentador = 1, multiplicador = 1;
+    private double contador = 0, aumentador = 1, multiplicador = 1;
     private ImageView imgWheel;
     private TextView tvContador, tvContadorMejoras;
     private MediaPlayer mp;
