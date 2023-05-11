@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, Juego.class));
+                startActivity(new Intent(MainActivity.this, Menu.class));
                 finish();
             }
         },2500);

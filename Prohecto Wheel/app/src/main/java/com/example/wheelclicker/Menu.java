@@ -1,19 +1,10 @@
 package com.example.wheelclicker;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +12,8 @@ import java.util.TimerTask;
 public class Menu extends AppCompatActivity {
 
     private ImageView luzSemaforo1, luzSemaforo2, luzSemaforo3, luzSemaforo4, luzSemaforo5;
-    private int segundosTranscurridos;
+    private Timer timer;
+    private int milisegundosTranscurridos;
     private TextView tvCronometro;
 
     @Override
@@ -37,31 +29,38 @@ public class Menu extends AppCompatActivity {
         semaforo_rojo_a_verde();
 
 
-
-
     }
 
 
-    private void cronometro (){
-    // Inicia el temporizador
-        Timer timer = new Timer();
+    private void cronometro () {
+        // Inicia el temporizador
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                // Actualiza el tiempo transcurrido
-                segundosTranscurridos++;
-                final int horas = segundosTranscurridos / 3600;
-                final int minutos = (segundosTranscurridos % 3600) / 60;
-                final int segundos = segundosTranscurridos % 60;
-
-                runOnUiThread(new Runnable() {
+                // Inicia el temporizador
+                timer = new Timer();
+                timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
-                        tvCronometro.setText(String.format("%02d:%02d:%02d", horas, minutos, segundos));
+                        // Actualiza el tiempo transcurrido
+                        milisegundosTranscurridos += 1;
+                        final int horas = (int) (milisegundosTranscurridos / 3600000);
+                        final int minutos = (int) ((milisegundosTranscurridos / 60000) % 60);
+                        final int segundos = (int) ((milisegundosTranscurridos / 1000) % 60);
+                        final int decimas = (int) ((milisegundosTranscurridos / 100) % 10);
+                        final int milisegundos = (int) (milisegundosTranscurridos % 1000);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvCronometro.setText(String.format("%02d:%02d:%02d.%d.%03d", horas, minutos, segundos, decimas, milisegundos));
+                            }
+                        });
                     }
-                });
+                }, 0, 1);
             }
-        }, 0, 1000);
+        });
     }
 
     private void semaforo_rojo_a_verde (){
