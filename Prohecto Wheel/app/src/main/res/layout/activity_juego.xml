@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toTopOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,6 +63,65 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 app:srcCompat="@drawable/efecto_boton" />
 
+            <RelativeLayout
+                android:id="@+id/tarjetaPor2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:context=".Menu"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/bg_rojo"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView88"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:gravity="center"
+                            android:paddingTop="5dp"
+                            android:text="x2"
+                            android:textColor="@color/white"
+                            android:textSize="34sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btnFffff"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvCuentaAtras"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="TextView"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textView88"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -72,208 +132,309 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="30dp"
-        android:background="@drawable/bg_gris_claro"
         android:orientation="vertical"
         android:paddingTop="5dp"
         android:paddingBottom="10dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone">
 
-        <TextView
-            android:id="@+id/tvContadorMejoras"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="xxx€"
-            android:textColor="@color/white"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gris_claro"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvContadorMejoras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="xxx€"
+                    android:textColor="@color/white"
+                    android:textSize="48sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    tools:context=".Menu">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/bg"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="108dp"
+                        android:paddingTop="5dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView50"
+                                android:layout_width="106dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dp"
+                                android:paddingTop="5dp"
+                                android:text="Concesionario"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView51"
+                                android:layout_width="106dp"
+                                android:layout_height="wrap_content"
+                                android:padding="1dp"
+                                android:text="Cada click vale +1"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+                            <Button
+                                android:id="@+id/btnConcesionario"
+                                android:layout_width="80dp"
+                                android:layout_height="0dp"
+                                android:layout_gravity="center|right"
+                                android:layout_marginVertical="8dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/rojo"
+                                android:onClick='btn_Concesionario_clickado'
+                                android:paddingHorizontal="2dp"
+                                android:tag="0"
+                                android:text="2€"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:cornerRadius="30dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/bg_circulo_gris_claro" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="86dp"
+                        android:layout_height="86dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/bg_circulo_blanco"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/imageView50"
+                            android:layout_width="51dp"
+                            android:layout_height="54dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/concesionario" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    tools:context=".Menu">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/bg"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="108dp"
+                        android:paddingTop="5dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView222"
+                                android:layout_width="106dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dp"
+                                android:paddingTop="5dp"
+                                android:text="Equipo de F1"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView55575"
+                                android:layout_width="106dp"
+                                android:layout_height="wrap_content"
+                                android:padding="1dp"
+                                android:text="Multiplica el valor del click"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView222" />
+
+                            <Button
+                                android:id="@+id/btnF1"
+                                android:layout_width="80dp"
+                                android:layout_height="0dp"
+                                android:layout_gravity="center|right"
+                                android:layout_marginVertical="8dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/rojo"
+                                android:onClick='btn_F1_clickado'
+                                android:paddingHorizontal="2dp"
+                                android:tag="0"
+                                android:text="2€"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:cornerRadius="30dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/bg_circulo_gris_claro" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="86dp"
+                        android:layout_height="86dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/bg_circulo_blanco"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="51dp"
+                            android:layout_height="54dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/f1" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:context=".Menu">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/bg_rojo"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView24"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dp"
+                                android:paddingTop="5dp"
+                                android:text="Bonificacion x2"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toStartOf="@+id/btnFffff"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView56"
+                                android:layout_width="0dp"
+                                android:layout_height="52dp"
+                                android:padding="1dp"
+                                android:text="Dale click cuando se apague el semaforo. Si consigues un tiempo menor a 1 segundo conseguiras el multiplicador durante 1 minuto"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/btnFffff"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView222" />
+
+                            <Button
+                                android:id="@+id/btnFffff"
+                                android:layout_width="0dp"
+                                android:layout_height="61dp"
+                                android:layout_gravity="center|right"
+                                android:layout_marginVertical="8dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/white"
+                                android:onClick='minijuego'
+                                android:paddingHorizontal="2dp"
+                                android:tag="Comprar"
+                                android:text="Jugar!"
+                                android:textColor="@color/gris_claro"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:cornerRadius="30dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--########################################################################Mejora Concesionario-->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            tools:context=".Menu">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/bg"
-                android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="3dp"
-                android:paddingStart="108dp"
-                android:paddingTop="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textView50"
-                        android:layout_width="106dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="0dp"
-                        android:paddingTop="5dp"
-                        android:text="Concesionario"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView51"
-                        android:layout_width="106dp"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="Cada click vale +1"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView50" />
-
-                    <Button
-                        android:id="@+id/btnConcesionario"
-                        android:layout_width="80dp"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center|right"
-                        android:layout_marginVertical="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/rojo"
-                        android:onClick='btn_Concesionario_clickado'
-                        android:paddingHorizontal="2dp"
-                        android:tag="Comprar"
-                        android:text="2€"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="30dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/bg_circulo_gris_claro" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="86dp"
-                android:layout_height="86dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/bg_circulo_blanco"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/imageView50"
-                    android:layout_width="51dp"
-                    android:layout_height="54dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/concesionario" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </RelativeLayout>
         <!--########################################################################Mejora F1-->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            tools:context=".Menu">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/bg"
-                android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="3dp"
-                android:paddingStart="108dp"
-                android:paddingTop="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textView222"
-                        android:layout_width="106dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="0dp"
-                        android:paddingTop="5dp"
-                        android:text="Equipo de F1"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView55575"
-                        android:layout_width="106dp"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="Multiplica el valor del click"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView222" />
-
-                    <Button
-                        android:id="@+id/btnF1"
-                        android:layout_width="80dp"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center|right"
-                        android:layout_marginVertical="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/rojo"
-                        android:onClick='btn_F1_clickado'
-                        android:paddingHorizontal="2dp"
-                        android:tag="Comprar"
-                        android:text="2€"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="30dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/bg_circulo_gris_claro" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="86dp"
-                android:layout_height="86dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/bg_circulo_blanco"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="51dp"
-                    android:layout_height="54dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/f1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </RelativeLayout>
 
 
     </LinearLayout>
@@ -305,6 +466,13 @@
             android:textColor="@color/white"
             android:textSize="48sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="resetearJuego"
+            android:text="Minijuego" />
     </LinearLayout>
     <!--##################################################################################################Menu-->
     <com.google.android.material.bottomnavigation.BottomNavigationView

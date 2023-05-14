@@ -13,7 +13,9 @@ public class MainActivity extends AppCompatActivity {
     private int a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //Ventana completa (Ocultar barra de abajo y barra de notificaciones)
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -22,13 +24,11 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, Menu.class));
+                startActivity(new Intent(MainActivity.this, Juego.class));
                 finish();
             }
         },2500);
 
 
     }
-
-
 }
